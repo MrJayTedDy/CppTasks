@@ -48,3 +48,6 @@ Thumbs.db
 # Temporary files
 *~
 *.tmp
+
+#UA SPECS
+UA_SPEC.md
