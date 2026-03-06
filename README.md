@@ -1,51 +1,33 @@
-# C++ Mastery: Academic Exercises & Advanced Systems Design
+# C++ Tasks
 
-This repository is a comprehensive roadmap for mastering C++, covering everything from fundamental academic problems to advanced system architecture. The projects are organized into two distinct tracks: structured textbook exercises and custom-designed advanced components.
+This repository contains solutions to various C++ programming tasks, focusing on advanced concepts and system design.
 
-## 📂 Repository Structure
+## Exercises Michael D. Adams
+This section contains solutions to exercises from the book "Exercises for Programming in C++" by Michael D. Adams. It provides systematic coverage of the C++ language core and the Standard Library through structured textbook exercises.
 
-### 1. [Exercises_Michael_D_Adams](./Exercises_Michael_D_Adams/)
-Solutions and implementations for the book **"Exercises for Programming in C++"** by Michael D. Adams.
-* **Focus**: Systematic coverage of the C++ language core and the Standard Library.
-* **Documentation**: See the [internal README](./Exercises_Michael_D_Adams/README.md) for the detailed file and chapter structure.
+## Random Advanced Tasks
 
-### 2. [Random Advanced tasks](./Random_Advanced_Tasks/)
-A collection of complex, mentor-guided projects and self-designed components. Each project follows a professional "Feature Specification" (SPEC) approach.
+### 1. Lambda Jump Table
+Write a program that reads user input and dispatches to different actions based on the input character. Support commands A, B, C, D for printing messages and X for exiting the program. Normalize input to uppercase.
 
-#### 🛠 Projects & Learning Path:
+### 2. IoT Sensor Management System
+Develop an IoT Sensor Management System using manual memory management without smart pointers or std::vector.
+- Create a custom exception class named 'SensorConnectionError' that inherits from std::exception, accepts a string message, and overrides the what() method.
+- Develop an abstract base class named 'Sensor' with a protected string member for sensor ID, a constructor to initialize it, a pure virtual function 'double readValue()', and a virtual destructor that prints the sensor ID being destroyed.
+- Develop a derived class named 'TemperatureSensor' that inherits from 'Sensor' and implements 'readValue()'. If the sensor ID is "BROKEN_TEMP", throw 'SensorConnectionError'; otherwise, return a dummy temperature value.
+- Develop a class named 'SensorManager' for basic RAII. It should contain a dynamically allocated array of Sensor pointers and track capacity and count. Constructor initializes an empty array of given capacity. Implement 'void addSensor(Sensor* s)' to add sensors if not full. Implement 'void pollAll()' to call 'readValue()' on all sensors, catching 'SensorConnectionError' and printing errors without stopping. Destructor must delete all sensors and the array to prevent leaks.
 
-* **[Lambda Jump Table](./Random_Advanced_Tasks/lambda_jump/SPEC.md)**
-    * **Goal**: Implementing a high-performance Command Dispatcher using the "Jump Table" pattern.
-    * **Concepts**: `std::unordered_map` lookup, Type Erasure (`std::function`), Lambda closures, $O(1)$ complexity, and Input Normalization (Always Uppercase).
+### 3. Static ID Manager
+Create a class that manages unique IDs for objects using static members. Track the current available ID and object count. Implement prefix and postfix increment operators. Ensure copy constructor assigns new unique IDs. Track object lifecycle in constructor and destructor.
 
-* **[IoT Sensor Management System](./Random_Advanced_Tasks/sensors_system/SPEC.md)**
-    * **Goal**: Evolution from low-level manual memory management to Modern C++ RAII.
-    * **Concepts**: `new`/`delete`, Exception Safety, Rule of Five, `std::unique_ptr`, `std::vector`.
+### 4. Buffered Batch Iterator
+Create a templated output iterator that buffers elements and processes them in batches. Use STL iterator concepts and std::span for efficiency. Implement move semantics for the iterator.
 
-* **[Static ID Manager](./Random_Advanced_Tasks/id_manager/SPEC.md)**
-    * **Goal**: Managing global state and unique object identification.
-    * **Concepts**: Static members, Operator Overloading (prefix/postfix), Object lifecycle tracking.
+### 5. Generic Numeric Transform
+[Task description not available - file is empty]
 
-* **[Buffered Batch Iterator](./Random_Advanced_Tasks/buffered_iterator/SPEC.md)**
-    * **Goal**: High-performance output iterator for batch data processing.
-    * **Concepts**: STL Iterator Concepts, Templates, `std::span`, Move Semantics.
+## MySTL
 
-* **[DSP Core & Dynamic Pipeline](./Random_Advanced_Tasks/dsp_core/SPEC.md)**
-    * **Goal**: Designing a digital signal processing engine.
-    * **Concepts**: Value Semantics, Operator Overloading, Dynamic vs. Static Polymorphism (CRTP).
-
----
-
-## 🧭 Engineering Philosophy
-
-Each feature and component in this repository is analyzed through three core engineering perspectives:
-1.  **Syntax & Interface**: API design, keywords, and code readability.
-2.  **Mechanisms**: Under-the-hood behavior, memory layout, vtables, and code generation.
-3.  **Use Cases**: Contextual application, trade-offs, and selecting the right tool for the job.
-
-
-
-## 🛠 Tech Stack
-* **Language Standards**: C++20 / C++23.
-* **Methodology**: Focus on "The Rule of Zero", Resource Safety (RAII), and Zero-cost Abstractions.
+### Custom Vector Implementation
+Implement a custom vector class that mimics std::vector functionality. Support dynamic memory management, constructors, destructor, assignment operators, and basic operations like push_back, size, and capacity. Handle memory reallocation and element copying/moving.
 * **Tools**: Designed for modern Clang/GCC compilers with strict warning levels (`-Wall -Wextra -Wpedantic`).
